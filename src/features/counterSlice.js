@@ -11,12 +11,6 @@ export const counterSlice = createSlice({
     searchMovie: (state,action) => {
       state.dataSearch = action.payload
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
-    },
   },
 })
 
