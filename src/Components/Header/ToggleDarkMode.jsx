@@ -4,7 +4,7 @@ import { IoSunny } from "react-icons/io5";
 
 function ToggleDarkMode() {
   const [dark, setDark] = useState(() => {
-    return localStorage.getItem("theme") === "light";
+    return localStorage.getItem("theme") === "dark";
   });
 
   useEffect(() => {
