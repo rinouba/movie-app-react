@@ -11,10 +11,11 @@ export const counterSlice = createSlice({
     searchMovie: (state,action) => {
       state.dataSearch = action.payload
     },
+
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { searchMovie } = counterSlice.actions
+export const { searchMovie , setFavoriteMovie} = counterSlice.actions
 
 export default counterSlice.reducer
