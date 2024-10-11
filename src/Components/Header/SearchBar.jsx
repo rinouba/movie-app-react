@@ -30,7 +30,7 @@ function SearchBar() {
     <>
       <form className="max-w-md mx-auto grow my-5 md:my-0 w-full">
         <label
-          for="default-search"
+          htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
         >
           Search
