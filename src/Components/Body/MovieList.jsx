@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Loading from "../Loading/Loading";
 import { useNavigate, Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
-// https://image.tmdb.org/t/p/w500 to get image >
 function MovieList() {
   const [data, setdata] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(false);
@@ -45,17 +45,42 @@ function MovieList() {
                     src={"https://image.tmdb.org/t/p/w500/" + movie.poster_path}
                     alt={movie.original_title}
                   />
-                  <div className="my-3 ml-3 flex justify-between ">
+                  <div className="my-2 ml-3 flex justify-between ">
                     <span className="w-2/4">{movie.original_title}</span>
-                    <button
-                      type="button"
-                      class="mr-3 px-5 py-2 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                      onClick={() => {
-                        navigate(`/movie/${movie.id}`);
-                      }}
-                    >
-                      <Link to={`/movie/${movie.id}`}>More Details</Link>
-                    </button>
+                    <div className="text-center">
+                      <button
+                        type="button"
+                        className="mr-3 px-5 py-2 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                        onClick={() => {
+                          navigate(`/movie/${movie.id}`);
+                        }}
+                      >
+                        <Link to={`/movie/${movie.id}`}>More Details</Link>
+                      </button>
+                      <button
+                        className="text-red-600 text-xl active:scale-125 hover:scale-150 mt-3 disabled:opacity-0"
+                        onClick={(event) => {
+                          let favorites =
+                            JSON.parse(
+                              localStorage.getItem("FavoriteMovies")
+                            ) || [];
+                          const movieExists = favorites.some(
+                            (fav) => fav.id === movie.id
+                          );
+
+                          if (!movieExists) {
+                            favorites.push(movie);
+                            event.currentTarget.disabled = true;
+                            localStorage.setItem(
+                              "FavoriteMovies",
+                              JSON.stringify(favorites)
+                            );
+                          }
+                        }}
+                      >
+                        <FaHeart />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </>
